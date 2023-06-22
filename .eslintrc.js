@@ -30,5 +30,7 @@ module.exports = {
   },
   plugins: ["@typescript-eslint", "react"],
   // elint的一些规则
-  rules: {}
+  rules: {
+    "@typescript-eslint/no-var-requires": "off"
+  }
 };
