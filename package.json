@@ -24,7 +24,8 @@
     "eject": "react-scripts eject",
     "format": "prettier --write 'src/**/*.+(s,jsx|ts|tsx|json|html|css|scss)' ",
     "lint": "eslint 'src/**/*.+(s,jsx|ts|tsx)' ",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "commit": "cz"
   },
   "eslintConfig": {
     "extends": [
@@ -45,9 +46,16 @@
     ]
   },
   "devDependencies": {
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.3",
     "prettier": "^2.8.8"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
