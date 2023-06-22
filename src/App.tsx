@@ -4,7 +4,7 @@ import type { FC } from "react";
 import { useRoutes, Link } from "react-router-dom";
 
 // 引入路由配置表
-import routes from "./router/index.tsx";
+import routes from "./router";
 
 const App: FC = () => {
   // 使用useRoutes加载路由

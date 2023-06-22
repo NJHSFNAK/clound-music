@@ -15,11 +15,11 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    // 增加下面两项
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }
-    // 允许添加tsx后缀
   },
   "include": ["src"]
 }

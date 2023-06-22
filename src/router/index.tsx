@@ -14,7 +14,7 @@ const Album = lazy(() => import("@/pages/Discover/c-pages/Album"));
 const Songs = lazy(() => import("@/pages/Discover/c-pages/Songs"));
 const Artist = lazy(() => import("@/pages/Discover/c-pages/Artist"));
 const Djradio = lazy(() => import("@/pages/Discover/c-pages/Djradio"));
-const Rank = lazy(() => import("@/pages/Discover/c-pages/Recommend"));
+const Rank = lazy(() => import("@/pages/Discover/c-pages/Rank"));
 const Recommend = lazy(() => import("@/pages/Discover/c-pages/Recommend"));
 
 const routes: RouteObject[] = [

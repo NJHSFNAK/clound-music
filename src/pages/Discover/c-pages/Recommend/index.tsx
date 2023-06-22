@@ -1,10 +1,7 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 
-// 导入重写的函数
-import { useAppSeletor, useAppDispatch, shallowEqualApp } from "@/store";
-// 导入action
-import { increment } from "@/store/features/counter";
+import hyRequst from "@/network";
 
 // 约束Props类型
 interface IProps {
@@ -12,24 +9,27 @@ interface IProps {
 }
 
 const Recommend: FC<IProps> = () => {
-  // 从store中获取数据
-  const { name, age } = useAppSeletor(
-    (state) => ({
-      name: state.counter.name,
-      age: state.counter.age
-    }),
-    shallowEqualApp
-  );
-  // 派发action
-  const dispatch = useAppDispatch();
+  const [mv, setMV] = useState<any[]>();
+  useEffect(() => {
+    hyRequst.get<any>({ url: "/banner" }).then((res) => {
+      console.log(res.banners);
+      setMV(res.banners);
+    });
+  }, []);
 
-  const incrementHandle = () => {
-    dispatch(increment(1));
-  };
   return (
     <div>
-      Recommend----{name}---{age}
-      <button onClick={incrementHandle}>+1</button>
+      Recommend
+      <ul>
+        {mv &&
+          mv.map((item) => {
+            return (
+              <li key={item.targetId}>
+                <img src={item.imageUrl} alt="" />
+              </li>
+            );
+          })}
+      </ul>
     </div>
   );
 };
