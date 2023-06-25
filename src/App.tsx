@@ -1,21 +1,29 @@
-import React, { memo } from "react";
+import React, { memo, Suspense, useEffect } from "react";
 import type { FC } from "react";
 
-import { useRoutes, Link } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
+import AppHeader from "./components/app-header";
+import AppFooter from "./components/app-footer";
 
+import AppPlayerBar from "./pages/Player/AppPlayerBar";
 // 引入路由配置表
 import routes from "./router";
+import { useAppDispatch } from "./store";
+import { getSongDetailAction } from "@/pages/Player/store";
 
 const App: FC = () => {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getSongDetailAction());
+  }, []);
   // 使用useRoutes加载路由
   return (
     <div>
-      <Link to="/discover">发现</Link>
-      <Link to="/download">下载</Link>
-      <Link to="/focus">关注</Link>
-      <Link to="/mine">我的</Link>
-
-      {useRoutes(routes)}
+      <AppHeader />
+      {/* 路由懒加载时下载js是有时间的，因此需要配置异步路由来显示内容，防止白屏 */}
+      <Suspense fallback="loading......">{useRoutes(routes)}</Suspense>
+      <AppPlayerBar />
+      {/* <AppFooter /> */}
     </div>
   );
 };

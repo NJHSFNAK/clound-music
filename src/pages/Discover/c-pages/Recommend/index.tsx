@@ -1,7 +1,19 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useEffect } from "react";
 import type { FC, ReactNode } from "react";
 
-import hyRequst from "@/network";
+import { useAppDispatch } from "@/store";
+// 引入redux的action
+// import { getSwiperDataAction, getHotRecommendAction, getNewAlbumAction } from "./store/index";
+import { getRecommendDataAction } from "./store/index";
+
+import Swiper from "./c-cpns/Swiper";
+import HotRecommend from "./c-cpns/HotRecommend";
+import NewAlbum from "./c-cpns/NewAlbum";
+import Ranking from "./c-cpns/Ranking";
+import UserLogin from "./c-cpns/UserLogin";
+import SettleArtist from "./c-cpns/SettleArtist";
+import HotAnchor from "./c-cpns/HotAnchor";
+import { RecommendSection, RecommendLeft, RecommendRight } from "./styled";
 
 // 约束Props类型
 interface IProps {
@@ -9,27 +21,29 @@ interface IProps {
 }
 
 const Recommend: FC<IProps> = () => {
-  const [mv, setMV] = useState<any[]>();
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    hyRequst.get<any>({ url: "/banner" }).then((res) => {
-      console.log(res.banners);
-      setMV(res.banners);
-    });
+    // 传递参数
+    dispatch(getRecommendDataAction());
   }, []);
 
   return (
     <div>
-      Recommend
-      <ul>
-        {mv &&
-          mv.map((item) => {
-            return (
-              <li key={item.targetId}>
-                <img src={item.imageUrl} alt="" />
-              </li>
-            );
-          })}
-      </ul>
+      <Swiper></Swiper>
+      <RecommendSection className="wrap-v2">
+        <RecommendLeft>
+          <HotRecommend />
+          <NewAlbum />
+          <Ranking />
+        </RecommendLeft>
+        <RecommendRight>
+          <UserLogin />
+          <div className="n-singer">
+            <SettleArtist />
+            <HotAnchor />
+          </div>
+        </RecommendRight>
+      </RecommendSection>
     </div>
   );
 };

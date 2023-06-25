@@ -2,11 +2,15 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useSelector, useDispatch, TypedUseSelectorHook, shallowEqual } from "react-redux";
 
 import counter from "./features/counter";
+import RecommendStore from "@/pages/Discover/c-pages/Recommend/store";
+import playerStore from "@/pages/Player/store";
 
 // 创建store
 const store = configureStore({
   reducer: {
-    counter: counter
+    counter: counter,
+    recommned: RecommendStore,
+    player: playerStore
   },
   // 是否开始调试模式
   devTools: true

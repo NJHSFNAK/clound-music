@@ -2,12 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 // PayloadAction是redux-toolkit提供的类型，用于设置action的payload的类型
 import type { PayloadAction } from "@reduxjs/toolkit";
 
+import { IInitialState } from "./type";
+
 // 初始值的类型
-interface IInitialState {
-  name: string;
-  age: number;
-  dirction: "left" | "right" | "top" | "bottom";
-}
+
 // 创建初始值
 const initialState: IInitialState = {
   name: "hxxx",

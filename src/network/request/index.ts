@@ -25,7 +25,7 @@ class HYRequest {
     // 公共的拦截器
     this.instance.interceptors.request.use(
       (config) => {
-        console.log("公共的请求拦截器");
+        // console.log("公共的请求拦截器");
         // 添加token
         // config.headers.Authorization = "123123";
         return config;
@@ -37,7 +37,7 @@ class HYRequest {
     );
     this.instance.interceptors.response.use(
       (data) => {
-        console.log("公共的响应拦截器");
+        // console.log("公共的响应拦截器");
         return data;
       },
       (err) => {

@@ -10,12 +10,16 @@ const Download = lazy(() => import("@/pages/Download/index"));
 const Focus = lazy(() => import("@/pages/Focus/index"));
 const Mine = lazy(() => import("@/pages/Mine/index"));
 
+// 推荐页面的二级路由
 const Album = lazy(() => import("@/pages/Discover/c-pages/Album"));
 const Songs = lazy(() => import("@/pages/Discover/c-pages/Songs"));
 const Artist = lazy(() => import("@/pages/Discover/c-pages/Artist"));
 const Djradio = lazy(() => import("@/pages/Discover/c-pages/Djradio"));
 const Rank = lazy(() => import("@/pages/Discover/c-pages/Rank"));
 const Recommend = lazy(() => import("@/pages/Discover/c-pages/Recommend"));
+
+// 404页面
+const NotFound = lazy(() => import("@/pages/NotFound/index"));
 
 const routes: RouteObject[] = [
   // 默认路由
@@ -69,6 +73,10 @@ const routes: RouteObject[] = [
   {
     path: "/mine",
     element: <Mine />
+  },
+  {
+    path: "*",
+    element: <NotFound />
   }
 ];
 
