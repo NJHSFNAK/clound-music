@@ -22,6 +22,7 @@ const App: FC = () => {
       <AppHeader />
       {/* 路由懒加载时下载js是有时间的，因此需要配置异步路由来显示内容，防止白屏 */}
       <Suspense fallback="loading......">{useRoutes(routes)}</Suspense>
+      {/* {useRoutes(routes)} */}
       <AppPlayerBar />
       {/* <AppFooter /> */}
     </div>
